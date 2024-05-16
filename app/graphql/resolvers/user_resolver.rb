@@ -5,19 +5,8 @@ module Resolvers
     argument :username, String, required: false
 
     def resolve(id: nil, username: nil)
-      if id.nil? && username.nil?
-        User.includes(:comments).all
-      else
-        args = {}
-        unless id.nil?
-          args[:id] = id
-        end
-        unless username.nil?
-          args[:username] = username
-        end
-        user = User.includes(:comments).find_by(args)
-        user.nil? ? [] : [user]
-      end
+      user = User.find_by_id(id).find_by_username(username)
+      user.nil? ? [] : user.includes(:comments).all
     end
   end
 end
