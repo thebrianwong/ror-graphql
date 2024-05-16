@@ -6,16 +6,16 @@ module Resolvers
 
     def resolve(id: nil, username: nil)
       if !id.nil? && !username.nil?
-        user = User.find_by(id: id, username: username)
+        user = User.includes(:comments).find_by(id: id, username: username)
         user.nil? ? [] : [user]
       elsif !id.nil?
-        user = User.find_by(id: id)
+        user = User.includes(:comments).find_by(id: id)
         user.nil? ? [] : [user]
       elsif !username.nil?
-        user = User.find_by(username: username)
+        user = User.includes(:comments).find_by(username: username)
         user.nil? ? [] : [user]
       else
-        User.all
+        User.includes(:comments).all
       end
     end
   end
