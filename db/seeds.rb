@@ -7,3 +7,23 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+[
+  {
+    username: "some guy",
+    email: "guy@guy.com"
+  },
+  {
+    username: "chronicallyOnline",
+    email: "example@example.com"
+  },
+  {
+    username: "billy bob",
+    email: "lol@lol.com"
+  }
+].each do |user|
+  new_user = User.find_or_create_by!(username: user[:username], email: user[:email])
+  ["wow very cool", "jk this sucks", "dont ban me"].each do |comment|
+    new_user.comments.find_or_create_by(content: comment)
+  end
+end
