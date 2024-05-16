@@ -20,7 +20,11 @@
   {
     username: "billy bob",
     email: "lol@lol.com"
-  }
+  },
+  {
+    username: "some guy",
+    email: "lol@lol.com"
+  },
 ].each do |user|
   new_user = User.find_or_create_by!(username: user[:username], email: user[:email])
   ["wow very cool", "jk this sucks", "dont ban me"].each do |comment|
